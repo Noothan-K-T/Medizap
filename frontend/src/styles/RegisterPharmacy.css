@@ -1,0 +1,130 @@
+/* frontend/src/styles/RegisterPharmacy.css */
+.register-pharmacy-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #111827; /* bg-gray-900 */
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+.back-to-dash-button {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: #60a5fa; /* text-blue-400 */
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.back-to-dash-button:hover {
+  color: #93c5fd;
+  background: #374151;
+}
+
+.register-box {
+  width: 100%;
+  max-width: 28rem; /* Slightly wider for this form */
+  background-color: #1f2937; /* bg-gray-800 */
+  padding: 2rem;
+  border-radius: 0.75rem;
+  border: 1px solid #374151;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.header-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #3498db; /* Blue accent */
+  margin: 0 auto 0.75rem;
+}
+.header-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+.header-subtitle {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.form-group {
+  width: 100%;
+}
+.coords-group {
+  display: flex;
+  gap: 1rem;
+}
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #d1d5db;
+  margin-bottom: 0.25rem;
+}
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #374151;
+  border: 1px solid #4b5563;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  transition: all 0.15s ease-in-out;
+  box-sizing: border-box;
+}
+.form-input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.4);
+}
+.form-message {
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+.form-message.error {
+  background-color: #450a0a;
+  color: #fca5a5;
+}
+.form-message.success {
+  background-color: #064e3b;
+  color: #86efac;
+}
+.submit-button {
+  width: 100%;
+  padding: 0.75rem 0;
+  background-color: #2980b9; /* Blue */
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.submit-button:hover {
+  background-color: #3498db;
+}
+.submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

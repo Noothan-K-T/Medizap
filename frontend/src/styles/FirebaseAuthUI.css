@@ -1,0 +1,383 @@
+/* src/styles/FirebaseAuthUI.css */
+
+/* Define CSS Variables for a Theming System - Adjusted for Grey Gradient */
+:root {
+  --primary-color: #607D8B; /* A slate grey for primary actions/highlights */
+  --primary-dark: #455A64; /* Darker slate grey */
+  --secondary-color: #90A4AE; /* A lighter, cooler grey for secondary elements */
+
+  /* Grey Gradient Backgrounds */
+  --background-gradient-start: #ECEFF1; /* Lightest grey */
+  --background-gradient-end: #CFD8DC; /* Slightly darker light grey */
+  --card-bg: #FFFFFF; /* White for card backgrounds to pop slightly */
+
+  /* Text Colors for Grey Theme */
+  --text-primary: #212121; /* Very dark grey for main text */
+  --text-secondary: #424242; /* Dark grey for secondary text */
+  --text-light: #757575; /* Medium grey for descriptions/placeholders */
+
+  --border-color: #B0BEC5; /* Medium light grey for borders */
+  --error-color: #D32F2F; /* Red for errors */
+  
+  /* Shadows are kept subtle to fit the lighter grey theme */
+  --shadow-color: rgba(0, 0, 0, 0.1); 
+  --shadow-hover: rgba(0, 0, 0, 0.15); 
+}
+
+/* Base Body Styles - Apply gradient background */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  /* Updated to use the grey gradient variables and added !important */
+  background: linear-gradient(135deg, var(--background-gradient-start) 0%, var(--background-gradient-end) 100%) !important;
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* --- Auth Container --- */
+.auth-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; /* Center vertically if space allows */
+  min-height: 100vh;
+  padding: 60px; /* Increased padding */
+  gap: 80px; /* Increased gap */
+  box-sizing: border-box;
+  width: 100%; /* Ensure it takes full width */
+  max-width: 1400px; /* Max width for content */
+  margin: 0 auto; /* Center the container itself */
+}
+
+/* --- Hero Section (Left Side) --- */
+.hero-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 600px; /* Slightly wider max-width */
+  text-align: left;
+  padding-right: 40px; /* Increased padding */
+}
+
+.logo-container {
+  margin-bottom: 30px; /* Space below the logo */
+}
+
+.logo {
+  width: 180px; /* Adjust logo size */
+  height: auto;
+  display: block; /* Ensures no extra space below img */
+}
+
+.heading {
+  font-size: 4.2rem; /* Larger heading */
+  margin-bottom: 25px;
+  color: var(--text-primary);
+  font-weight: 800;
+  line-height: 1.15; /* Tighter line height */
+  letter-spacing: -1.5px;
+}
+
+.subheading {
+  font-size: 1.6rem; /* Larger subheading */
+  margin-bottom: 20px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.tagline {
+  font-size: 1.2rem; /* Slightly larger tagline */
+  color: var(--text-light); /* Lighter color for tagline */
+  margin-top: 15px;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+/* --- Auth Section (Right Side) --- */
+.auth-section {
+  flex: 0 0 500px; /* Fixed width for the auth card */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--card-bg); /* Uses white for card background */
+  border-radius: 20px; /* More rounded corners */
+  box-shadow: 0 15px 40px var(--shadow-color); /* Enhanced shadow */
+  padding: 60px 50px; /* Increased padding */
+  box-sizing: border-box;
+  text-align: center;
+  transition: all 0.3s ease; /* Smooth transition for hover effects if any */
+}
+
+.auth-section:hover {
+  box-shadow: 0 20px 50px var(--shadow-hover); /* Slightly larger shadow on hover */
+}
+
+.auth-title {
+  font-size: 2.5rem; /* Larger title */
+  margin-bottom: 20px;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.auth-description {
+  font-size: 1.1rem; /* Slightly larger description */
+  margin-bottom: 40px; /* More space below description */
+  color: var(--text-secondary);
+}
+
+.form-container {
+  width: 100%;
+}
+
+.firebase-ui-widget {
+  width: 100%;
+  /* Customizing FirebaseUI elements */
+  /* These are general overrides and might need specific targeting based on FirebaseUI's internal class names */
+  /* Using !important where necessary to override FirebaseUI's default inline or low-specificity styles */
+
+  .firebaseui-container {
+    box-shadow: none !important; /* Remove default FirebaseUI shadow */
+    border: none !important; /* Remove default FirebaseUI border */
+    padding: 0 !important;
+    background-color: transparent !important; /* Ensure it blends with parent */
+  }
+
+  .firebaseui-title {
+    color: var(--text-primary) !important;
+    font-size: 1.8rem !important;
+    font-weight: 600 !important;
+  }
+
+  .firebaseui-text {
+    color: var(--text-secondary) !important;
+  }
+
+  .firebaseui-list-item button {
+    border-radius: 8px !important; /* More rounded buttons */
+    padding: 15px 20px !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 15px !important; /* Space between buttons */
+    border: 1px solid var(--border-color) !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05) !important;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1) !important;
+    }
+  }
+
+  /* Specific provider button adjustments */
+  .firebaseui-idp-google {
+    background-color: #FFFFFF !important; /* White background for Google button */
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+  }
+  .firebaseui-idp-google .firebaseui-idp-icon {
+    width: 24px !important;
+    height: 24px !important;
+    margin-right: 10px !important;
+  }
+
+  /* For email/password or phone input fields */
+  .firebaseui-textfield.mdl-textfield .mdl-textfield__input {
+    border-color: var(--border-color) !important;
+    border-radius: 8px !important;
+    padding: 12px 15px !important;
+    font-size: 1rem !important;
+    color: var(--text-primary) !important;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  .firebaseui-textfield.mdl-textfield.is-focused .mdl-textfield__input {
+    border-color: var(--primary-color) !important;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 3px rgba(96, 125, 139, 0.2) !important; /* Using primary-color with alpha */
+  }
+
+  .firebaseui-button.firebaseui-button-primary {
+    background-color: var(--primary-color) !important; /* Primary color for primary button */
+    color: #FFFFFF !important;
+    border-radius: 8px !important;
+    padding: 15px 25px !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    margin-top: 20px !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(96, 125, 139, 0.3) !important; /* Shadow using primary-color with alpha */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease !important;
+  }
+
+  .firebaseui-button.firebaseui-button-primary:hover {
+    background-color: var(--primary-dark) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(69, 90, 100, 0.4) !important; /* Shadow using primary-dark with alpha */
+  }
+
+  .firebaseui-link {
+    color: var(--secondary-color) !important;
+    text-decoration: none !important;
+    font-size: 0.95rem !important;
+    transition: color 0.2s ease !important;
+  }
+  .firebaseui-link:hover {
+    color: var(--primary-color) !important;
+    text-decoration: underline !important;
+  }
+}
+
+.loader {
+  margin-top: 30px;
+  font-size: 1.1rem;
+  color: var(--text-light);
+  font-style: italic;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+/* --- Error Message Styling --- */
+/* Ensure error messages also fit the theme */
+.auth-container > div[style*="background-color: rgb(45, 55, 72)"] { /* Target FirebaseUI's internal error div */
+  background-color: var(--card-bg) !important; /* Use card background */
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  color: var(--error-color) !important;
+  font-size: 1.1rem !important;
+  border: 2px solid var(--error-color);
+  text-align: center;
+}
+
+.auth-container > div[style*="background-color: rgb(45, 55, 72)"] p:first-child {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+
+/* Tablets (landscape) and smaller desktops */
+@media (max-width: 1200px) {
+  .auth-container {
+    padding: 40px;
+    gap: 60px;
+  }
+  .heading {
+    font-size: 3.5rem;
+  }
+  .subheading {
+    font-size: 1.4rem;
+  }
+  .auth-section {
+    flex: 0 0 450px;
+    padding: 50px 40px;
+  }
+  .auth-title {
+    font-size: 2.2rem;
+  }
+}
+
+/* Tablets (portrait) and larger phones */
+@media (max-width: 992px) {
+  .auth-container {
+    flex-direction: column;
+    padding: 30px;
+    gap: 50px;
+    min-height: auto; /* Allow height to adjust */
+  }
+  .hero-section {
+    align-items: center;
+    text-align: center;
+    padding-right: 0;
+    max-width: 100%; /* Take full width */
+  }
+  .logo-container {
+    margin-bottom: 20px;
+  }
+  .logo {
+    width: 150px;
+  }
+  .heading {
+    font-size: 3rem;
+    margin-bottom: 15px;
+  }
+  .subheading {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  .tagline {
+    font-size: 1rem;
+    margin-top: 5px;
+  }
+  .auth-section {
+    flex: none;
+    width: 100%;
+    max-width: 450px; /* Keep a max-width for the card */
+    margin: 0 auto;
+    padding: 40px 30px;
+  }
+  .auth-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  .auth-description {
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+  }
+}
+
+/* Smaller phones */
+@media (max-width: 576px) {
+  .auth-container {
+    padding: 20px;
+    gap: 30px;
+  }
+  .logo {
+    width: 120px;
+  }
+  .heading {
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+  }
+  .subheading {
+    font-size: 1rem;
+  }
+  .tagline {
+    font-size: 0.9rem;
+  }
+  .auth-section {
+    padding: 30px 20px;
+  }
+  .auth-title {
+    font-size: 1.8rem;
+  }
+  .auth-description {
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+  }
+  .firebase-ui-widget .firebaseui-list-item button {
+    padding: 12px 15px !important;
+    font-size: 1rem !important;
+  }
+  .firebaseui-widget .firebaseui-button.firebaseui-button-primary {
+    padding: 12px 20px !important;
+    font-size: 1rem !important;
+  }
+  .loader {
+    font-size: 0.9rem;
+  }
+}

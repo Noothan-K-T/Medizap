@@ -1,0 +1,388 @@
+/* src/styles/DashboardHome.css */
+
+/* Assume --primary-bg, --secondary-bg, etc., are defined in a global CSS file or App.css */
+
+/* --- News Marquee/Top Bar --- */
+.dashboard-news-marquee-container {
+    background-color: var(--secondary-bg);
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.dashboard-news-marquee-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-right: 20px;
+    flex-shrink: 0;
+    text-transform: uppercase;
+}
+
+.dashboard-news-marquee-wrapper {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.dashboard-news-marquee-content {
+    display: inline-block;
+    animation: marquee 300s linear infinite; /* CHANGED: Marquee speed set to 300 seconds */
+    padding-left: 100%;
+    white-space: nowrap;
+}
+
+.dashboard-news-marquee-item {
+    display: inline-block;
+    margin-right: 60px;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.dashboard-news-marquee-item a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.dashboard-news-marquee-item a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.dashboard-news-marquee-item span {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-left: 10px;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+}
+
+.dashboard-news-marquee-content:hover {
+    animation-play-state: paused;
+}
+
+
+/* --- Overall Dashboard Layout (Map + Secondary Content) --- */
+.dashboard-layout-with-map {
+    display: grid;
+    grid-template-columns: 800px minmax(280px, 350px);
+    gap: 25px;
+    padding: 0 20px 20px 20px;
+    background-color: var(--primary-bg);
+    min-height: calc(100vh - var(--header-height, 48px) - 20px - var(--marquee-height, 50px));
+    box-sizing: border-box;
+    align-items: start;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* --- Map Container (Left Side) --- */
+.dashboard-map-container {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    padding: 0px;
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    min-width: 850px;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    height: 500px; /* Approximate height from your image. Adjust as needed. */
+}
+
+/* Specific styling for the NearbyMap component WHEN USED INSIDE dashboard-map-container */
+.dashboard-map-container .nearby-map-container {
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+    margin: 0;
+    background-color: transparent;
+    min-height: auto;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Important: Ensure the actual Leaflet map canvas fills its container */
+.dashboard-map-container .nearby-map-container .map-canvas {
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    height: 100%;
+    flex-grow: 1;
+    width: 100%;
+}
+
+/* Adjust map loading/error messages within the dashboard context */
+.dashboard-map-container .nearby-map-container .map-loading,
+.dashboard-map-container .nearby-map-container .map-error {
+    box-shadow: none;
+    margin-bottom: 15px;
+    color: var(--text-secondary);
+}
+
+/* Adjust map disclaimer text within the dashboard context */
+.dashboard-map-container .nearby-map-container .map-disclaimer {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* --- Map Fade Effect Overlays --- */
+/* REMOVED: display: none; to remove the fading boxes entirely */
+.dashboard-map-container::before,
+.dashboard-map-container::after {
+    display: none; /* CHANGED: Hides the gradient overlays */
+}
+
+
+/* --- Dashboard Secondary Content Area (Right side for cards) --- */
+.dashboard-secondary-content {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-content: start;
+    box-sizing: border-box;
+    max-width: 350px;
+    justify-self: end;
+}
+
+
+/* --- General Dashboard Card Styling --- */
+.dashboard-card {
+    background-color: var(--secondary-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px var(--shadow-color);
+    padding: 25px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-sizing: border-box;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+.card-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--accent-color);
+    border-radius: 1px;
+}
+
+/* --- Upcoming Appointments Card --- */
+.appointments-card .appointment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.appointments-card .appointment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.95em;
+    color: var(--text-primary);
+}
+.appointments-card .appointment-item:last-child {
+    border-bottom: none;
+}
+.appointments-card .appointment-time {
+    font-weight: 600;
+    color: var(--accent-color);
+    flex-shrink: 0;
+    margin-right: 15px;
+}
+.appointments-card .appointment-description {
+    flex-grow: 1;
+    text-align: left;
+}
+.appointments-card .no-data-message {
+    color: var(--text-secondary);
+    font-style: italic;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* --- Button for Upcoming Reminders --- */
+.reminders-button-container {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.reminders-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 4px 10px rgba(var(--accent-rgb), 0.3);
+}
+
+.reminders-button:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-2px);
+}
+
+.reminders-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(var(--accent-rgb), 0.2);
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1024px) {
+    .dashboard-layout-with-map {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 15px;
+        max-width: 900px;
+    }
+    .dashboard-map-container {
+        grid-column: 1;
+        grid-row: auto;
+        min-height: 450px;
+        min-width: auto;
+        max-width: 100%;
+        order: 2;
+        background-color: var(--secondary-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 16px var(--shadow-color);
+        height: auto;
+    }
+    .dashboard-map-container::before,
+    .dashboard-map-container::after {
+        display: none;
+    }
+
+    .dashboard-secondary-content {
+        grid-column: 1;
+        order: 1;
+        flex-direction: column;
+        max-width: 100%;
+    }
+    .dashboard-card {
+        padding: 20px;
+    }
+    .card-title {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+
+    .nearby-map-container .map-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .nearby-map-container .map-controls .pincode-input,
+    .nearby-map-container .map-controls .search-button {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-layout-with-map {
+        padding: 15px;
+        gap: 15px;
+    }
+    .dashboard-map-container {
+        min-height: 350px;
+    }
+    .dashboard-card {
+        padding: 18px;
+    }
+    .card-title {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+    .dashboard-news-marquee-container {
+        padding: 8px 15px;
+        margin-bottom: 15px;
+    }
+    .dashboard-news-marquee-title {
+        font-size: 1rem;
+    }
+    .dashboard-news-marquee-item {
+        font-size: 0.9rem;
+        margin-right: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-layout-with-map {
+        padding: 10px;
+        gap: 10px;
+    }
+    .dashboard-card {
+        padding: 15px;
+        border-radius: 10px;
+    }
+    .card-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+    }
+    .card-title::after {
+        width: 30px;
+        height: 1.5px;
+    }
+    .dashboard-map-container {
+        min-height: 300px;
+        padding: 15px;
+        border-radius: 10px;
+    }
+    .dashboard-map-container .nearby-map-container .map-title {
+        font-size: 1.4rem;
+    }
+    .pincode-input, .search-button {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+        border-radius: 6px;
+    }
+    .dashboard-news-marquee-container {
+        padding: 5px 10px;
+        margin-bottom: 10px;
+    }
+    .dashboard-news-marquee-title {
+        font-size: 0.9rem;
+    }
+    .dashboard-news-marquee-item {
+        font-size: 0.8rem;
+        margin-right: 20px;
+    }
+}

@@ -1,0 +1,211 @@
+/* src/styles/PharmacistLoginPage.css */
+
+/* --- Import Inter Font --- */
+/* You should add this @import to your main index.css file, not here */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'); */
+
+/* --- Keyframes for Spinner --- */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Main Page Container --- */
+.pharmacist-login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #111827; /* bg-gray-900 */
+  padding: 1rem; /* p-4 */
+  font-family: 'Inter', sans-serif; /* font-inter */
+  position: relative; /* Needed for the absolute back-button */
+  box-sizing: border-box;
+}
+
+/* --- Back Button --- */
+.back-button {
+  position: absolute;
+  top: 1rem; /* top-4 */
+  left: 1rem; /* left-4 */
+  display: flex;
+  align-items: center;
+  padding: 0.5rem; /* p-2 */
+  color: #60a5fa; /* text-blue-400 */
+  background: none;
+  border: none;
+  border-radius: 0.5rem; /* rounded-lg */
+  cursor: pointer;
+  transition: color 0.15s ease-in-out;
+}
+
+.back-button:hover {
+  color: #93c5fd; /* hover:text-blue-300 */
+}
+
+.back-button-icon {
+  width: 1.25rem; /* w-5 */
+  height: 1.25rem; /* h-5 */
+  margin-right: 0.5rem; /* mr-2 */
+}
+
+.back-button-text {
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.25rem;
+}
+
+/* --- Login Box --- */
+.login-box {
+  width: 100%;
+  max-width: 24rem; /* max-w-sm */
+  background-color: #1f2937; /* bg-gray-800 */
+  padding: 2rem; /* p-8 */
+  border-radius: 0.75rem; /* rounded-xl */
+  border: 1px solid rgba(185, 28, 28, 0.5); /* border border-red-700/50 */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-2xl */
+}
+
+/* --- Login Header --- */
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem; /* mb-8 */
+}
+
+.header-icon {
+  width: 2.5rem; /* w-10 */
+  height: 2.5rem; /* h-10 */
+  color: #ef4444; /* text-red-500 */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.75rem; /* mb-3 */
+}
+
+.header-title {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 700; /* font-bold */
+  color: #ffffff; /* text-white */
+  margin-bottom: 0.5rem; /* mb-2 */
+}
+
+.header-subtitle {
+  font-size: 0.875rem; /* text-sm */
+  color: #9ca3af; /* text-gray-400 */
+}
+
+/* --- Login Form --- */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* space-y-6 */
+}
+
+.form-group {
+  /* This is the <div> wrapping label and input */
+  width: 100%;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+  color: #d1d5db; /* text-gray-300 */
+  margin-bottom: 0.25rem; /* mb-1 */
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem; /* p-3 */
+  background-color: #374151; /* bg-gray-700 */
+  border: 1px solid #4b5563; /* border-gray-600 */
+  border-radius: 0.5rem; /* rounded-lg */
+  color: #ffffff; /* text-white */
+  transition: all 0.15s ease-in-out;
+  box-sizing: border-box; /* Important for 100% width + padding */
+}
+
+.form-input::placeholder {
+  color: #6b7280; /* Tailwind's default placeholder color */
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #ef4444; /* focus:border-red-500 */
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4); /* focus:ring-red-500 */
+}
+
+/* --- Form Message (Error/Success) --- */
+.form-message {
+  padding: 0.75rem; /* p-3 */
+  font-size: 0.875rem; /* text-sm */
+  border-radius: 0.5rem; /* rounded-lg */
+}
+
+.form-message.error {
+  background-color: #450a0a; /* bg-red-900 */
+  color: #fca5a5; /* text-red-300 */
+}
+
+.form-message.success {
+  background-color: #064e3b; /* bg-green-900 */
+  color: #86efac; /* text-green-300 */
+}
+
+/* --- Submit Button --- */
+.submit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.75rem 0; /* py-3 */
+  background-color: #dc2626; /* bg-red-600 */
+  color: #ffffff; /* text-white */
+  font-weight: 600; /* font-semibold */
+  border: none;
+  border-radius: 0.5rem; /* rounded-lg */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #b91c1c; /* hover:bg-red-700 */
+}
+
+.submit-button:disabled {
+  opacity: 0.5; /* disabled:opacity-50 */
+  cursor: not-allowed;
+}
+
+.submit-button:disabled:hover {
+  background-color: #dc2626; /* Stop hover effect when disabled */
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  height: 1.25rem; /* h-5 */
+  width: 1.25rem; /* w-5 */
+  color: #ffffff; /* text-white */
+  margin-right: 0.75rem; /* mr-3 */
+}
+
+/* --- Forgot Password Link --- */
+.forgot-password-container {
+  margin-top: 1rem; /* mt-4 */
+  text-align: center;
+}
+
+.forgot-password-link {
+  font-size: 0.75rem; /* text-xs */
+  color: #9ca3af; /* text-gray-400 */
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+
+.forgot-password-link:hover {
+  color: #f87171; /* hover:text-red-400 */
+}
